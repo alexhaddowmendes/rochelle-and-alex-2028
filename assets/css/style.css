@@ -3,12 +3,13 @@
   --coral-deep: #b8432a;
   --amber: #f4a261;
   --sand: #fbf1e0;
+  --paper: #fffaf0;
   --sand-deep: #f0dfc2;
   --teal: #0b4f57;
   --teal-soft: #2a7f86;
   --ink: #17353a;
   --white: #fffdf9;
-  --heading-font: 'Caveat', 'Comic Sans MS', cursive;
+  --heading-font: 'Josefin Sans', 'Segoe UI', system-ui, sans-serif;
   --body-font: 'Nunito', 'Segoe UI', system-ui, sans-serif;
 }
 
@@ -37,8 +38,10 @@ h2 {
 
 h2 {
   color: var(--coral-deep);
-  font-size: 2.5rem;
+  font-size: 1.6rem;
+  letter-spacing: 0.1em;
   margin-bottom: 0.5rem;
+  text-transform: uppercase;
 }
 
 [hidden] {
@@ -46,96 +49,281 @@ h2 {
 }
 
 /* Navigation */
+:root {
+  --nav-h: 3.75rem;
+  --frame: 0.6rem;
+  --footer-h: 4.5rem;
+}
+
+html {
+  overscroll-behavior: none;
+  scroll-behavior: smooth;
+}
+
+body {
+  animation: page-in 0.4s ease backwards;
+  transition: opacity 0.35s ease;
+}
+
+.jump body {
+  opacity: 0;
+}
+
+body.leaving {
+  opacity: 0;
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Postcard border: a paper edge around the whole screen, with a fine inner line. */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  border: var(--frame) solid var(--paper);
+  box-shadow: inset 0 0 0 1px rgba(23, 53, 58, 0.25);
+  pointer-events: none;
+}
+
 .site-nav {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.6rem 1rem;
-  background: var(--teal);
-}
-
-.site-nav a {
-  color: var(--white);
-  font-weight: 700;
-  padding: 0.3rem 1rem;
-  border-radius: 999px;
-  text-decoration: none;
-}
-
-.site-nav a:hover,
-.site-nav a[aria-current='page'] {
-  background: var(--teal-soft);
-}
-
-/* Hero */
-.hero {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 24rem;
-  padding: 2.5rem 1rem 5rem;
+  gap: 0.5rem;
+  height: var(--nav-h);
+  opacity: var(--nav-show, 1);
+}
+
+/* The backing fades in (--nav-fade, set from site.js) once the page title scrolls away. */
+.site-nav::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--teal);
+  box-shadow: 0 4px 0 var(--coral);
+  opacity: var(--nav-fade, 0);
+}
+
+.site-nav a {
+  width: 6.5rem;
+  padding: 0.4rem 0;
+  border-radius: 999px;
+  background: var(--teal);
+  color: var(--white);
+  font-family: var(--heading-font);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  box-shadow: 0 0 0 2px rgba(255, 253, 249, 0.45);
+  transition: background 0.2s ease;
+}
+
+.site-nav a:hover {
+  background: var(--teal-soft);
+}
+
+.site-nav a[aria-current='page'] {
+  background: var(--coral-deep);
+}
+
+/* Hero: a travel-poster sky, with the sun behind the photo and mountains below. */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  height: 100svh;
+  min-height: 34rem;
+  padding: calc(var(--frame) + 1.25rem) 1rem 5.5rem;
   overflow: hidden;
-  background: linear-gradient(180deg, var(--teal) 0%, #8a4a55 42%, var(--coral) 70%, var(--amber) 100%);
+  background: linear-gradient(180deg, #9cc1b8 0%, #f6e3a8 30%, #f4b56b 66%, #e8875a 100%);
   text-align: center;
   color: var(--white);
 }
 
-.hero-small {
-  min-height: 15rem;
+.hero > * {
+  position: relative;
 }
 
-.hero-photo {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.7);
+.hero p {
+  margin: 0;
 }
 
 .hero-sun {
   position: absolute;
   left: 50%;
-  bottom: -6rem;
-  width: 15rem;
-  height: 15rem;
-  margin-left: -7.5rem;
+  top: 38%;
+  width: min(120vw, 34rem);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: radial-gradient(circle, #ffe2a8 0%, var(--amber) 70%);
+  background: #fff6dc;
+  opacity: 0.85;
 }
 
-/* The sun would sit over the photo once one is added. */
-.hero-photo ~ .hero-sun {
-  display: none;
-}
-
-.hero-text {
-  position: relative;
-  text-shadow: 0 2px 10px rgba(11, 79, 87, 0.7);
+.hero-kicker {
+  color: var(--ink);
+  font-family: var(--heading-font);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
 }
 
 .hero h1 {
-  font-size: clamp(3.5rem, 13vw, 6rem);
-  transform: rotate(-2deg);
+  font-size: clamp(2rem, 8.5vw, 4.25rem);
+  letter-spacing: 0.04em;
+  text-shadow: 3px 3px 0 rgba(23, 53, 58, 0.35);
+  text-transform: uppercase;
 }
 
-.hero p {
-  margin: 0.25rem 0 0;
-  font-size: 1.25rem;
+.hero-photo {
+  flex: 1 1 0;
+  min-height: 0;
+  width: min(78vw, 22rem);
+  margin: 0.75rem 0;
+  border: 5px solid var(--paper);
+  border-radius: 999px 999px 0.4rem 0.4rem;
+  object-fit: cover;
+  object-position: 50% 25%;
+  box-shadow: 0 10px 0 rgba(23, 53, 58, 0.18);
 }
 
-.hero .hero-details {
+.hero-date {
+  font-family: var(--heading-font);
+  font-size: 1.5rem;
   font-weight: 700;
+  letter-spacing: 0.12em;
+  text-shadow: 2px 2px 0 rgba(23, 53, 58, 0.35);
+  text-transform: uppercase;
 }
 
-.hero-wave {
+.hero-venue {
+  color: var(--ink);
+  font-family: var(--heading-font);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.postmark {
+  position: absolute;
+  bottom: 12.5rem;
+  right: 0.9rem;
+  z-index: 1;
+  background: rgba(255, 250, 240, 0.7);
+  display: grid;
+  place-items: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  border: 2px solid rgba(23, 53, 58, 0.6);
+  border-radius: 50%;
+  color: rgba(23, 53, 58, 0.7);
+  font-family: var(--heading-font);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.15;
+  text-transform: uppercase;
+  transform: rotate(14deg);
+}
+
+.postmark::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(23, 53, 58, 0.45);
+  border-radius: 50%;
+}
+
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 1.5rem;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  margin-left: -1.5rem;
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--teal);
+  animation: bob 1.8s ease-in-out infinite;
+}
+
+.scroll-cue svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+@keyframes bob {
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+.hero-mountains {
   position: absolute;
   left: 0;
   bottom: -2px;
   width: 100%;
-  height: 4rem;
-  fill: var(--sand);
+  height: 5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  body,
+  .scroll-cue {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* RSVP and Info share these, so their titles sit in the same place on both pages. */
+.section {
+  min-height: calc(100vh - var(--footer-h));
+  min-height: calc(100svh - var(--footer-h));
+  padding-top: calc(var(--nav-h) + 1.5rem);
+}
+
+.section-head {
+  min-height: 8.5rem;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.section-title {
+  margin: 0;
+  color: var(--coral-deep);
+  font-size: 3rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.section-sub {
+  margin: 0.5rem 0 0;
+  font-size: 1.125rem;
 }
 
 /* Content */
@@ -143,15 +331,25 @@ h2 {
   width: 100%;
   max-width: 40rem;
   margin: 0 auto;
-  padding: 1.5rem 1rem 1rem;
+  padding: 0 1rem 1rem;
 }
 
 .card {
   margin-bottom: 1.5rem;
   padding: 1.5rem;
-  background: var(--white);
-  border-radius: 1.25rem;
+  background: var(--paper);
+  border-radius: 0.4rem;
   box-shadow: 0 6px 0 var(--sand-deep);
+}
+
+/* Airmail stripe along the top edge of each card. */
+.card::before {
+  content: '';
+  display: block;
+  height: 0.5rem;
+  margin: -1.5rem -1.5rem 1.25rem;
+  border-radius: 0.4rem 0.4rem 0 0;
+  background: repeating-linear-gradient(135deg, var(--coral) 0 14px, var(--paper) 14px 24px, var(--teal-soft) 24px 38px, var(--paper) 38px 48px);
 }
 
 .card p:last-child {
@@ -247,7 +445,7 @@ button:disabled {
 .member legend {
   padding: 0 0.4rem;
   font-family: var(--heading-font);
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--teal);
 }
@@ -313,9 +511,16 @@ button:disabled {
 }
 
 .site-footer {
-  padding: 0.5rem 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--footer-h);
+  padding: 0 1rem;
   font-family: var(--heading-font);
-  font-size: 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
   text-align: center;
+  text-transform: uppercase;
   color: var(--teal);
 }

@@ -5,6 +5,8 @@
   const membersBox = document.getElementById('members');
   const memberTemplate = document.getElementById('member-template');
   const message = document.getElementById('message');
+  const subtitle = document.getElementById('rsvp-sub');
+  const FIND_PROMPT = "Enter your full name and we'll find your household.";
   const noteInput = document.getElementById('note');
   const emailInput = document.getElementById('email');
 
@@ -31,6 +33,8 @@
       candidate.hidden = candidate !== section;
     });
     showMessage('');
+    if (section === findForm) subtitle.textContent = FIND_PROMPT;
+    if (section === confirmation) subtitle.textContent = 'Thank you! Your answers are saved.';
   }
 
   function setBusy(form, busy, label) {
@@ -74,10 +78,10 @@
     const answeredBefore = result.members.some(function (member) {
       return member.status;
     });
-    document.getElementById('household-intro').textContent = answeredBefore
+    showOnly(householdForm);
+    subtitle.textContent = answeredBefore
       ? "Welcome back! Here's what you told us last time. Change anything you like and send it again."
       : 'We found you! Let us know who can make it.';
-    showOnly(householdForm);
   }
 
   function readAnswers() {
@@ -118,7 +122,7 @@
         showHousehold(result);
       } else {
         showMessage(
-          "Hmm, we couldn't find that name. Check the spelling against your invitation, or get in touch with us and we'll sort it out."
+          "We couldn't find you, try entering your name as it's spelt on the invitation. Reach out to Alex or Rochelle if you have any problems."
         );
       }
     } catch (error) {

@@ -8,25 +8,20 @@
   <link rel="icon" href="data:,">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&family=Nunito:wght@400;600;700&display=swap">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
   <nav class="site-nav" aria-label="Main">
-    <a href="index.html">RSVP</a>
+    <a href="index.html#rsvp">RSVP</a>
     <a href="info.html" aria-current="page">Info</a>
   </nav>
 
-  <header class="hero hero-small">
-    <div class="hero-sun" aria-hidden="true"></div>
-    <div class="hero-text">
-      <h1>The details</h1>
-      <p class="hero-details">12 April 2028 &middot; Sundowners, Zambales</p>
+  <section class="section">
+    <div class="section-head">
+      <h1 class="section-title" data-nav-fade>Info</h1>
+      <p class="section-sub">Everything you need to know for the big day.</p>
     </div>
-    <svg class="hero-wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M0 50 C 240 100, 480 0, 720 40 S 1200 90, 1440 30 V 90 H 0 Z"></path>
-    </svg>
-  </header>
 
   <main class="page">
     <!-- ================= EDIT THIS AREA =================
@@ -37,7 +32,7 @@
 
     <section class="card" id="schedule">
       <h2>Date and schedule</h2>
-      <p>Wednesday 12 April 2028</p>
+      <p>Wednesday, 12th of April, 2028</p>
       <p class="placeholder">TODO: add the schedule (ceremony, reception and anything else, with times).</p>
     </section>
 
@@ -70,7 +65,10 @@
 
     <!-- ================= END OF EDIT AREA ================= -->
   </main>
+  </section>
 
   <footer class="site-footer">See you on the beach!</footer>
+
+  <script src="assets/js/site.js"></script>
 </body>
 </html>
