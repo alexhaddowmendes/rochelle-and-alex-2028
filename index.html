@@ -2,71 +2,77 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <script>if (location.hash === "#rsvp") document.documentElement.classList.add("jump");</script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Rochelle &amp; Alex | RSVP</title>
   <meta name="description" content="RSVP for Rochelle and Alex's wedding, 12 April 2028.">
   <link rel="icon" href="data:,">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&family=Nunito:wght@400;600;700&display=swap">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
   <nav class="site-nav" aria-label="Main">
-    <a href="index.html" aria-current="page">RSVP</a>
+    <a href="#rsvp">RSVP</a>
     <a href="info.html">Info</a>
   </nav>
 
-  <header class="hero">
-    <!-- HERO PHOTO: put your photo at assets/img/hero.jpg, then delete the two
-         comment markers around the line below. -->
-    <!-- <img class="hero-photo" src="assets/img/hero.jpg" alt="Rochelle and Alex"> -->
+  <header class="hero" data-nav-fade>
     <div class="hero-sun" aria-hidden="true"></div>
-    <div class="hero-text">
-      <h1>Rochelle &amp; Alex</h1>
-      <p>are getting married!</p>
-      <p class="hero-details">12 April 2028 &middot; Sundowners, Zambales</p>
-    </div>
-    <svg class="hero-wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M0 50 C 240 100, 480 0, 720 40 S 1200 90, 1440 30 V 90 H 0 Z"></path>
+    <div class="postmark" aria-hidden="true">12 APR<br>2028</div>
+    <p class="hero-kicker">The marriage of</p>
+    <h1>Rochelle &amp; Alex</h1>
+    <img class="hero-photo" src="assets/ro-al-01.png" alt="Rochelle and Alex">
+    <p class="hero-date">12th of April, 2028</p>
+    <p class="hero-venue">Sundowners, Zambales, Philippines</p>
+    <a class="scroll-cue" href="#rsvp" aria-label="Scroll to RSVP">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg>
+    </a>
+    <svg class="hero-mountains" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+      <path fill="#b98a9a" d="M0 90 L180 30 L330 80 L560 10 L800 85 L1010 35 L1240 80 L1440 25 V120 H0 Z"/>
+      <path fill="#7a6b8e" d="M0 105 L220 60 L420 100 L650 50 L900 105 L1120 65 L1440 100 V120 H0 Z"/>
+      <path fill="#fbf1e0" d="M0 115 C 300 95, 600 120, 900 108 S 1300 100, 1440 112 V120 H0 Z"/>
     </svg>
   </header>
 
-  <main class="page">
-    <section class="card" aria-labelledby="rsvp-heading">
-      <h2 id="rsvp-heading">RSVP</h2>
+  <section class="section" id="rsvp" aria-labelledby="rsvp-heading">
+    <div class="section-head">
+      <h2 class="section-title" id="rsvp-heading">RSVP</h2>
+      <p class="section-sub" id="rsvp-sub">Enter your full name and we'll find your household.</p>
+    </div>
 
-      <form id="find-form" novalidate>
-        <p>Pop in your full name, spelt the way it is on your invitation, and we'll find your household.</p>
-        <label for="guest-name">Your full name</label>
-        <input id="guest-name" name="name" type="text" autocomplete="name" required>
-        <button type="submit">Find my invitation</button>
-      </form>
+    <main class="page">
+      <div class="card">
+        <form id="find-form" novalidate>
+          <label for="guest-name">Your full name</label>
+          <input id="guest-name" name="name" type="text" autocomplete="name" required>
+          <button type="submit">Find my invitation</button>
+        </form>
 
-      <form id="household-form" hidden>
-        <p id="household-intro"></p>
-        <div id="members"></div>
+        <form id="household-form" hidden>
+          <div id="members"></div>
 
-        <label for="note">Anything else we should know? <span class="optional">(optional)</span></label>
-        <textarea id="note" rows="3"></textarea>
+          <label for="note">Anything else we should know? <span class="optional">(optional)</span></label>
+          <textarea id="note" rows="3"></textarea>
 
-        <label for="email">Contact email</label>
-        <input id="email" type="email" autocomplete="email" required>
+          <label for="email">Contact email</label>
+          <input id="email" type="email" autocomplete="email" required>
 
-        <button type="submit">Send our RSVP</button>
-        <button type="button" class="link-button" id="start-over">Not you? Start over</button>
-      </form>
+          <button type="submit">Send our RSVP</button>
+          <button type="button" class="link-button" id="start-over">Not you? Start over</button>
+        </form>
 
-      <div id="confirmation" hidden>
-        <p class="confirmation-title">Thank you! Your answers are saved.</p>
-        <ul id="confirmation-list"></ul>
-        <p>Plans changed? Come back any time and type your name again. Your latest answer is the one that counts.</p>
-        <button type="button" id="change-answers">Change my answers</button>
+        <div id="confirmation" hidden>
+          <ul id="confirmation-list"></ul>
+          <p>Plans changed? Come back any time and type your name again. Your latest answer is the one that counts.</p>
+          <button type="button" id="change-answers">Change my answers</button>
+        </div>
+
+        <p id="message" class="message" role="status" aria-live="polite" hidden></p>
       </div>
-
-      <p id="message" class="message" role="status" aria-live="polite" hidden></p>
-    </section>
-  </main>
+    </main>
+  </section>
 
   <template id="member-template">
     <fieldset class="member">
@@ -84,5 +90,6 @@
 
   <script src="assets/js/config.js"></script>
   <script src="assets/js/rsvp.js"></script>
+  <script src="assets/js/site.js"></script>
 </body>
 </html>
