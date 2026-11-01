@@ -1,14 +1,20 @@
 :root {
-  --coral: #e76f51;
-  --coral-deep: #b8432a;
-  --amber: #f4a261;
-  --sand: #fbf1e0;
-  --paper: #fffaf0;
-  --sand-deep: #f0dfc2;
-  --teal: #0b4f57;
-  --teal-soft: #2a7f86;
-  --ink: #17353a;
-  --white: #fffdf9;
+  /* Sampled from the Manila poster. */
+  --dusk-teal: #648483;
+  --sage: #a1af95;
+  --haze: #c7c286;
+  --butter: #edd78f;
+  --glow: #f0dfa1;
+  --sun: #f7f4ea;
+  --foam: #ece6c7;
+  --terracotta: #d08f55;
+  --dry-sand: #c7b98d;
+  --shadow-slate: #645c5e;
+  --palm-deep: #373d36;
+  /* Darkened from the poster, so small text and buttons stay readable. */
+  --deep-sea: #3f5f60;
+  --sea-soft: #46696a;
+  --clay-deep: #985224;
   --heading-font: 'Josefin Sans', 'Segoe UI', system-ui, sans-serif;
   --body-font: 'Nunito', 'Segoe UI', system-ui, sans-serif;
 }
@@ -21,8 +27,8 @@
 
 body {
   margin: 0;
-  background: var(--sand);
-  color: var(--ink);
+  background: var(--foam);
+  color: var(--palm-deep);
   font-family: var(--body-font);
   font-size: 1.0625rem;
   line-height: 1.55;
@@ -37,7 +43,7 @@ h2 {
 }
 
 h2 {
-  color: var(--coral-deep);
+  color: var(--clay-deep);
   font-size: 1.6rem;
   letter-spacing: 0.1em;
   margin-bottom: 0.5rem;
@@ -50,7 +56,7 @@ h2 {
 
 /* Navigation */
 :root {
-  --nav-h: 3.75rem;
+  --nav-h: 4.75rem;
   --frame: 0.6rem;
   --footer-h: 4.5rem;
 }
@@ -85,8 +91,8 @@ body::after {
   position: fixed;
   inset: 0;
   z-index: 20;
-  border: var(--frame) solid var(--paper);
-  box-shadow: inset 0 0 0 1px rgba(23, 53, 58, 0.25);
+  border: var(--frame) solid var(--sun);
+  box-shadow: inset 0 0 0 1px rgba(55, 61, 54, 0.25);
   pointer-events: none;
 }
 
@@ -101,6 +107,7 @@ body::after {
   justify-content: center;
   gap: 0.5rem;
   height: var(--nav-h);
+  padding-top: var(--frame);
   opacity: var(--nav-show, 1);
 }
 
@@ -110,8 +117,8 @@ body::after {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: var(--teal);
-  box-shadow: 0 4px 0 var(--coral);
+  background: var(--deep-sea);
+  box-shadow: 0 4px 0 var(--terracotta);
   opacity: var(--nav-fade, 0);
 }
 
@@ -119,8 +126,8 @@ body::after {
   width: 6.5rem;
   padding: 0.4rem 0;
   border-radius: 999px;
-  background: var(--teal);
-  color: var(--white);
+  background: var(--deep-sea);
+  color: var(--sun);
   font-family: var(--heading-font);
   font-size: 0.95rem;
   font-weight: 700;
@@ -128,19 +135,19 @@ body::after {
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
-  box-shadow: 0 0 0 2px rgba(255, 253, 249, 0.45);
+  box-shadow: 0 0 0 2px rgba(247, 244, 234, 0.45);
   transition: background 0.2s ease;
 }
 
 .site-nav a:hover {
-  background: var(--teal-soft);
+  background: var(--sea-soft);
 }
 
 .site-nav a[aria-current='page'] {
-  background: var(--coral-deep);
+  background: var(--clay-deep);
 }
 
-/* Hero: a travel-poster sky, with the sun behind the photo and mountains below. */
+/* Hero: a low view across the sea, with the sun setting behind tall mountains. */
 .hero {
   position: relative;
   display: flex;
@@ -149,11 +156,11 @@ body::after {
   height: 100vh;
   height: 100svh;
   min-height: 34rem;
-  padding: calc(var(--frame) + 1.25rem) 1rem 5.5rem;
+  padding: calc(var(--frame) + 1.25rem) 1rem 6.5rem;
   overflow: hidden;
-  background: linear-gradient(180deg, #9cc1b8 0%, #f6e3a8 30%, #f4b56b 66%, #e8875a 100%);
+  background: linear-gradient(180deg, var(--dusk-teal) 0%, var(--sage) 24%, var(--haze) 38%, var(--butter) 54%, var(--glow) 78%);
   text-align: center;
-  color: var(--white);
+  color: var(--sun);
 }
 
 .hero > * {
@@ -164,61 +171,81 @@ body::after {
   margin: 0;
 }
 
-.hero-sun {
+/* Anchored to the shoreline. Never narrower than 56rem, so phones crop the sides
+   of the scene rather than squashing it. */
+.hero-scene {
   position: absolute;
   left: 50%;
-  top: 38%;
-  width: min(120vw, 34rem);
-  aspect-ratio: 1;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: #fff6dc;
-  opacity: 0.85;
+  bottom: -2px;
+  width: max(100%, 56rem);
+  aspect-ratio: 1440 / 900;
+  transform: translateX(-50%);
+}
+
+.sun-narrow {
+  display: none;
+}
+
+.hero-palm {
+  position: absolute;
+  left: 0;
+  bottom: 1.5rem;
+  height: 74%;
 }
 
 .hero-kicker {
-  color: var(--ink);
+  color: var(--sun);
   font-family: var(--heading-font);
   font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.4em;
+  text-shadow: 1px 1px 0 var(--palm-deep);
   text-transform: uppercase;
 }
 
 .hero h1 {
   font-size: clamp(2rem, 8.5vw, 4.25rem);
   letter-spacing: 0.04em;
-  text-shadow: 3px 3px 0 rgba(23, 53, 58, 0.35);
+  text-shadow: 3px 3px 0 var(--palm-deep);
   text-transform: uppercase;
 }
 
 .hero-photo {
   flex: 1 1 0;
   min-height: 0;
-  width: min(78vw, 22rem);
-  margin: 0.75rem 0;
-  border: 5px solid var(--paper);
-  border-radius: 999px 999px 0.4rem 0.4rem;
+  width: min(92vw, 32rem);
+  margin-top: 0.75rem;
+  border: 5px solid var(--sun);
+  border-bottom: 0;
+  border-radius: 999px 999px 0 0;
   object-fit: cover;
   object-position: 50% 25%;
-  box-shadow: 0 10px 0 rgba(23, 53, 58, 0.18);
+}
+
+/* Paper strip under the photo, so the date reads over any part of the scene. */
+.hero-caption {
+  width: min(92vw, 32rem);
+  padding: 0.6rem 0.75rem 0.7rem;
+  border-radius: 0 0 0.4rem 0.4rem;
+  background: var(--sun);
+  box-shadow: 0 8px 0 rgba(55, 61, 54, 0.3);
 }
 
 .hero-date {
+  color: var(--palm-deep);
   font-family: var(--heading-font);
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-shadow: 2px 2px 0 rgba(23, 53, 58, 0.35);
   text-transform: uppercase;
 }
 
 .hero-venue {
-  color: var(--ink);
+  color: var(--palm-deep);
   font-family: var(--heading-font);
   font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font-weight: 400;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
@@ -227,14 +254,14 @@ body::after {
   bottom: 12.5rem;
   right: 0.9rem;
   z-index: 1;
-  background: rgba(255, 250, 240, 0.7);
+  background: rgba(247, 244, 234, 0.7);
   display: grid;
   place-items: center;
   width: 4.5rem;
   height: 4.5rem;
-  border: 2px solid rgba(23, 53, 58, 0.6);
+  border: 2px solid rgba(55, 61, 54, 0.6);
   border-radius: 50%;
-  color: rgba(23, 53, 58, 0.7);
+  color: rgba(55, 61, 54, 0.7);
   font-family: var(--heading-font);
   font-size: 0.7rem;
   font-weight: 700;
@@ -248,7 +275,7 @@ body::after {
   content: '';
   position: absolute;
   inset: 4px;
-  border: 1px solid rgba(23, 53, 58, 0.45);
+  border: 1px solid rgba(55, 61, 54, 0.45);
   border-radius: 50%;
 }
 
@@ -263,8 +290,8 @@ body::after {
   height: 3rem;
   margin-left: -1.5rem;
   border-radius: 50%;
-  background: var(--paper);
-  color: var(--teal);
+  background: var(--sun);
+  color: var(--deep-sea);
   animation: bob 1.8s ease-in-out infinite;
 }
 
@@ -279,12 +306,33 @@ body::after {
   }
 }
 
-.hero-mountains {
-  position: absolute;
-  left: 0;
-  bottom: -2px;
-  width: 100%;
-  height: 5rem;
+@media (max-width: 48rem) {
+  .hero {
+    min-height: 42rem;
+    padding-bottom: 14rem;
+  }
+
+  .hero-palm,
+  .sun-wide {
+    display: none;
+  }
+
+  .sun-narrow {
+    display: inline;
+  }
+
+  .hero-date {
+    font-size: 1.3rem;
+  }
+
+  .hero-venue {
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+  }
+
+  .postmark {
+    bottom: 20rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -315,7 +363,7 @@ body::after {
 
 .section-title {
   margin: 0;
-  color: var(--coral-deep);
+  color: var(--clay-deep);
   font-size: 3rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -337,9 +385,9 @@ body::after {
 .card {
   margin-bottom: 1.5rem;
   padding: 1.5rem;
-  background: var(--paper);
+  background: var(--sun);
   border-radius: 0.4rem;
-  box-shadow: 0 6px 0 var(--sand-deep);
+  box-shadow: 0 6px 0 var(--dry-sand);
 }
 
 /* Airmail stripe along the top edge of each card. */
@@ -349,18 +397,22 @@ body::after {
   height: 0.5rem;
   margin: -1.5rem -1.5rem 1.25rem;
   border-radius: 0.4rem 0.4rem 0 0;
-  background: repeating-linear-gradient(135deg, var(--coral) 0 14px, var(--paper) 14px 24px, var(--teal-soft) 24px 38px, var(--paper) 38px 48px);
+  background: repeating-linear-gradient(135deg, var(--terracotta) 0 14px, var(--sun) 14px 24px, var(--dusk-teal) 24px 38px, var(--sun) 38px 48px);
 }
 
 .card p:last-child {
   margin-bottom: 0;
 }
 
+.card a {
+  color: var(--deep-sea);
+}
+
 .placeholder {
   padding: 0.6rem 0.8rem;
-  border: 2px dashed var(--coral);
+  border: 2px dashed var(--terracotta);
   border-radius: 0.6rem;
-  color: var(--coral-deep);
+  color: var(--clay-deep);
   font-weight: 600;
 }
 
@@ -383,10 +435,10 @@ textarea {
   display: block;
   width: 100%;
   padding: 0.65rem 0.8rem;
-  border: 2px solid var(--teal-soft);
+  border: 2px solid var(--dusk-teal);
   border-radius: 0.6rem;
-  background: var(--white);
-  color: var(--ink);
+  background: var(--sun);
+  color: var(--palm-deep);
   font: inherit;
   font-size: max(16px, 1rem); /* below 16px, iOS zooms in on focus */
 }
@@ -395,7 +447,7 @@ input:focus-visible,
 textarea:focus-visible,
 button:focus-visible,
 a:focus-visible {
-  outline: 3px solid var(--teal-soft);
+  outline: 3px solid var(--dusk-teal);
   outline-offset: 2px;
 }
 
@@ -406,15 +458,15 @@ button {
   padding: 0.8rem 1rem;
   border: 0;
   border-radius: 999px;
-  background: var(--teal);
-  color: var(--white);
+  background: var(--deep-sea);
+  color: var(--sun);
   font: inherit;
   font-weight: 700;
   cursor: pointer;
 }
 
 button:hover:not(:disabled) {
-  background: var(--teal-soft);
+  background: var(--sea-soft);
 }
 
 button:disabled {
@@ -425,20 +477,20 @@ button:disabled {
 .link-button {
   margin-top: 0.5rem;
   background: none;
-  color: var(--teal);
+  color: var(--deep-sea);
   text-decoration: underline;
 }
 
 .link-button:hover:not(:disabled) {
   background: none;
-  color: var(--coral-deep);
+  color: var(--clay-deep);
 }
 
 .member {
   min-width: 0;
   margin: 1rem 0 0;
   padding: 1rem;
-  border: 2px solid var(--sand-deep);
+  border: 2px solid var(--dry-sand);
   border-radius: 1rem;
 }
 
@@ -447,7 +499,7 @@ button:disabled {
   font-family: var(--heading-font);
   font-size: 1.2rem;
   font-weight: 700;
-  color: var(--teal);
+  color: var(--deep-sea);
 }
 
 .choice {
@@ -475,20 +527,20 @@ button:disabled {
 .choice span {
   display: block;
   padding: 0.6rem 0.5rem;
-  border: 2px solid var(--teal);
+  border: 2px solid var(--deep-sea);
   border-radius: 999px;
-  color: var(--teal);
+  color: var(--deep-sea);
   font-weight: 700;
   text-align: center;
 }
 
 .choice input:checked + span {
-  background: var(--teal);
-  color: var(--white);
+  background: var(--deep-sea);
+  color: var(--sun);
 }
 
 .choice input:focus-visible + span {
-  outline: 3px solid var(--teal-soft);
+  outline: 3px solid var(--dusk-teal);
   outline-offset: 2px;
 }
 
@@ -496,8 +548,8 @@ button:disabled {
   margin: 1rem 0 0;
   padding: 0.7rem 0.9rem;
   border-radius: 0.6rem;
-  background: var(--sand);
-  color: var(--coral-deep);
+  background: var(--foam);
+  color: var(--clay-deep);
   font-weight: 600;
 }
 
@@ -507,7 +559,7 @@ button:disabled {
   font-size: 1.9rem;
   font-weight: 700;
   line-height: 1.2;
-  color: var(--teal);
+  color: var(--deep-sea);
 }
 
 .site-footer {
@@ -522,5 +574,5 @@ button:disabled {
   letter-spacing: 0.2em;
   text-align: center;
   text-transform: uppercase;
-  color: var(--teal);
+  color: var(--deep-sea);
 }
