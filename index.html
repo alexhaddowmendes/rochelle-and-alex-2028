@@ -9,7 +9,9 @@
   <link rel="icon" href="data:,">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&family=Nunito:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&family=Nunito:wght@400;600;700&display=swap">
+  <link rel="preload" as="image" type="image/webp" media="(max-aspect-ratio: 4/5)" imagesrcset="assets/img/hero-portrait-720.webp 720w, assets/img/hero-portrait-1080.webp 1080w" imagesizes="(max-aspect-ratio: 31/50) 62vh, 100vw">
+  <link rel="preload" as="image" type="image/webp" media="(min-aspect-ratio: 801/1000)" imagesrcset="assets/img/hero-desktop-960.webp 960w, assets/img/hero-desktop-1672.webp 1672w" imagesizes="(max-aspect-ratio: 16/9) 178vh, 100vw">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -19,21 +21,21 @@
   </nav>
 
   <header class="hero" data-nav-fade>
-    <div class="hero-sun" aria-hidden="true"></div>
-    <div class="postmark" aria-hidden="true">12 APR<br>2028</div>
+    <picture class="hero-art">
+      <source media="(max-aspect-ratio: 4/5)" type="image/webp" srcset="assets/img/hero-portrait-720.webp 720w, assets/img/hero-portrait-1080.webp 1080w" sizes="(max-aspect-ratio: 31/50) 62vh, 100vw" width="1080" height="1741">
+      <img src="assets/img/hero-desktop-1672.webp" srcset="assets/img/hero-desktop-960.webp 960w, assets/img/hero-desktop-1672.webp 1672w" sizes="(max-aspect-ratio: 16/9) 178vh, 100vw" width="1672" height="941" alt="" fetchpriority="high">
+    </picture>
     <p class="hero-kicker">The marriage of</p>
-    <h1>Rochelle &amp; Alex</h1>
-    <img class="hero-photo" src="assets/ro-al-01.png" alt="Rochelle and Alex">
-    <p class="hero-date">12th of April, 2028</p>
+    <h1><span>Rochelle</span> <span>&amp; Alex</span></h1>
+    <p class="hero-date">12th <span class="hero-of">of</span> April, 2028</p>
+    <figure class="print">
+      <img src="assets/img/ro-al-01.webp" width="991" height="790" alt="Rochelle and Alex sitting together at a garden table, Rochelle holding a white bouquet">
+      <div class="postmark" aria-hidden="true">12 APR<br>2028</div>
+    </figure>
     <p class="hero-venue">Sundowners, Zambales, Philippines</p>
     <a class="scroll-cue" href="#rsvp" aria-label="Scroll to RSVP">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg>
     </a>
-    <svg class="hero-mountains" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
-      <path fill="#b98a9a" d="M0 90 L180 30 L330 80 L560 10 L800 85 L1010 35 L1240 80 L1440 25 V120 H0 Z"/>
-      <path fill="#7a6b8e" d="M0 105 L220 60 L420 100 L650 50 L900 105 L1120 65 L1440 100 V120 H0 Z"/>
-      <path fill="#fbf1e0" d="M0 115 C 300 95, 600 120, 900 108 S 1300 100, 1440 112 V120 H0 Z"/>
-    </svg>
   </header>
 
   <section class="section" id="rsvp" aria-labelledby="rsvp-heading">

@@ -82,7 +82,7 @@ Then clear the test rows from **Responses** and **Log**, keeping the header rows
 ## 6. Before you share the link
 
 - **Fill in the info page.** Everything still to do is in one marked area of [info.html](info.html). Search for `TODO`; each one shows on the page as a dashed coral box until you replace it.
-- **Add a photo (optional).** Save it as `assets/img/hero.jpg`, then follow the comment in the hero section of [index.html](index.html).
+- **Change the hero or photo (optional).** The hero illustration is `assets/img/hero-desktop-*.webp` and `assets/img/hero-portrait-*.webp`, and the postcard photo is `assets/img/ro-al-01.webp`. Replace a file with one of the same size and name.
 
 These edits only reach the live site once you commit and push them:
 

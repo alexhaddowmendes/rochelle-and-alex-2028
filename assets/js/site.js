@@ -3,6 +3,8 @@
   const target = document.querySelector('[data-nav-fade]');
   const onSplash = target.classList.contains('hero');
   const rsvpLink = nav.querySelector('a[href="#rsvp"]');
+  const photo = document.querySelector('.print');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   // Arriving from another page's RSVP link: land on the RSVP section straight away.
   if (document.documentElement.classList.contains('jump')) {
@@ -21,6 +23,9 @@
       nav.style.setProperty('--nav-show', shown);
       nav.style.setProperty('--nav-fade', 1);
       nav.style.pointerEvents = shown < 0.05 ? 'none' : '';
+
+      // The photo scrolls slower than the page, so it slips behind the next section.
+      if (!reducedMotion.matches) photo.style.setProperty('--parallax', Math.max(0, window.scrollY) * 0.06 + 'px');
 
       // Highlight RSVP while the RSVP section is on screen, as Info is on its own page.
       const inRsvp = document.getElementById('rsvp').getBoundingClientRect().top <= window.innerHeight / 2;
