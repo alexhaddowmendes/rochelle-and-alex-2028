@@ -10,6 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&family=Nunito:wght@400;600;700&display=swap">
+  <link rel="preload" as="image" type="image/webp" media="(max-aspect-ratio: 4/5)" imagesrcset="assets/img/hero-portrait-720.webp 720w, assets/img/hero-portrait-1080.webp 1080w" imagesizes="(max-aspect-ratio: 31/50) 62vh, 100vw">
+  <link rel="preload" as="image" type="image/webp" media="(min-aspect-ratio: 801/1000)" imagesrcset="assets/img/hero-desktop-960.webp 960w, assets/img/hero-desktop-1672.webp 1672w" imagesizes="(max-aspect-ratio: 16/9) 178vh, 100vw">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -19,82 +21,18 @@
   </nav>
 
   <header class="hero" data-nav-fade>
-    <svg class="hero-scene" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-      <defs>
-        <path id="puff" d="M0 70 a26 26 0 0 1 14 -46 a34 34 0 0 1 60 -14 a30 30 0 0 1 52 8 a24 24 0 0 1 40 22 a18 18 0 0 1 14 30 Z"/>
-        <g id="cloud-far"><use href="#puff" fill="#e2c9ae"/></g>
-        <g id="cloud">
-          <use href="#puff" fill="#d08f55"/>
-          <use href="#puff" fill="#e2b365" transform="translate(4 -7) scale(.96 .9)"/>
-          <use href="#puff" fill="#f0dfa1" transform="translate(30 -22) scale(.62 .62)"/>
-        </g>
-      </defs>
-      <use href="#cloud-far" transform="translate(-60 300) scale(1.7)"/>
-      <use href="#cloud-far" transform="translate(230 235) scale(1.3)"/>
-      <use href="#cloud-far" transform="translate(1010 245) scale(1.4)"/>
-      <use href="#cloud-far" transform="translate(1230 190) scale(1.8)"/>
-      <use href="#cloud-far" transform="translate(90 440) scale(2)"/>
-      <use href="#cloud-far" transform="translate(1170 430) scale(2)"/>
-      <use href="#cloud-far" transform="translate(470 500) scale(1.6)"/>
-      <use href="#cloud-far" transform="translate(770 505) scale(1.5)"/>
-      <use href="#cloud" transform="translate(30 215) scale(1.1)"/>
-      <use href="#cloud" transform="translate(1140 150) scale(1.05)"/>
-      <use href="#cloud" transform="translate(-30 540) scale(1.5)"/>
-      <use href="#cloud" transform="translate(290 400) scale(1.2)"/>
-      <use href="#cloud" transform="translate(1000 390) scale(1.25)"/>
-      <use href="#cloud" transform="translate(1290 520) scale(1.4)"/>
-      <use href="#cloud" transform="translate(170 610) scale(1.3)"/>
-      <use href="#cloud" transform="translate(1110 600) scale(1.3)"/>
-      <use href="#cloud" transform="translate(430 625) scale(1)"/>
-      <use href="#cloud" transform="translate(850 610) scale(1)"/>
-      <use href="#cloud" transform="translate(525 565) scale(0.8)"/>
-      <use href="#cloud" transform="translate(745 550) scale(0.8)"/>
-      <circle class="sun-wide" cx="720" cy="590" r="380" fill="#f7f4ea"/>
-      <circle class="sun-narrow" cx="720" cy="740" r="170" fill="#f7f4ea"/>
-      <use href="#cloud" transform="translate(600 660) scale(0.7)"/>
-      <use href="#cloud" transform="translate(735 690) scale(0.55)"/>
-      <g transform="translate(0 340)">
-        <path fill="#8f7469" d="M0 450 V250 L130 170 L300 230 L470 170 L640 300 L720 340 L820 300 L980 180 L1140 220 L1310 140 L1440 200 V450 Z"/>
-        <path fill="#645c5e" d="M0 450 V210 L110 150 L240 66 L330 170 L420 230 L520 248 L610 330 L720 392 L820 340 L900 222 L1000 290 L1090 200 L1200 96 L1300 190 L1440 250 V450 Z"/>
-        <path fill="#ba8253" d="M240 66 L330 170 L420 230 L380 300 L300 230 L262 150 Z"/>
-        <path fill="#dd9e53" d="M520 248 L610 330 L720 392 L640 402 L560 340 Z"/>
-        <path fill="#dd9e53" d="M900 222 L820 340 L720 392 L800 402 L870 330 Z"/>
-        <path fill="#ba8253" d="M1200 96 L1090 200 L1000 290 L1060 320 L1130 240 L1176 170 Z"/>
-        <path fill="#4f503f" d="M0 450 V370 L90 340 L200 380 L330 350 L470 400 L600 430 L720 442 L860 425 L1000 390 L1120 350 L1260 385 L1360 345 L1440 365 V450 Z"/>
-        <path fill="#373d36" d="M0 450 V418 q40 -14 80 -4 q50 -12 96 6 q70 -6 110 30 Z"/>
-        <path fill="#373d36" d="M1440 450 V414 q-50 -12 -92 2 q-46 -10 -84 8 q-60 -2 -100 26 Z"/>
-        <rect y="450" width="1440" height="110" fill="#92aba2"/>
-        <path fill="#7b908e" d="M0 472 h1440 v8 H0 Z M0 490 h1440 v12 H0 Z M0 514 h1440 v46 H0 Z"/>
-        <path fill="#ece6c7" d="M672 452 h96 v4 h-96 Z M650 462 h140 v5 h-140 Z M676 474 h88 v6 h-88 Z M626 488 h188 v7 h-188 Z M664 504 h112 v8 h-112 Z M610 520 h220 v9 h-220 Z"/>
-        <path fill="#ece6c7" d="M0 506 C 240 490, 420 526, 720 516 S 1240 486, 1440 510 V560 H0 Z"/>
-        <path fill="#c7b98d" d="M0 516 C 240 500, 420 536, 720 526 S 1240 496, 1440 520 V560 H0 Z"/>
-        <path fill="#ece6c7" d="M0 552 C 300 538, 600 558, 900 546 S 1300 540, 1440 550 V560 H0 Z"/>
-      </g>
-    </svg>
-    <svg class="hero-palm" viewBox="0 0 420 640" aria-hidden="true">
-      <defs>
-        <path id="frond" d="M0 0 Q 90 -56 190 18 Q 92 -24 0 0 Z"/>
-      </defs>
-      <path fill="#4f503f" d="M0 640 C 40 460, 90 300, 186 160 L 196 166 C 112 310, 66 470, 26 640 Z"/>
-      <g fill="#373d36" transform="translate(190 164)">
-        <use href="#frond" transform="rotate(-52)"/>
-        <use href="#frond" transform="rotate(-16)"/>
-        <use href="#frond" transform="rotate(22)"/>
-        <use href="#frond" transform="rotate(62)"/>
-        <use href="#frond" transform="scale(-1 1) rotate(-52)"/>
-        <use href="#frond" transform="scale(-1 1) rotate(-16)"/>
-        <use href="#frond" transform="scale(-1 1) rotate(22)"/>
-        <use href="#frond" transform="scale(-1 1) rotate(62)"/>
-      </g>
-    </svg>
-    <div class="postmark" aria-hidden="true">12 APR<br>2028</div>
+    <picture class="hero-art">
+      <source media="(max-aspect-ratio: 4/5)" type="image/webp" srcset="assets/img/hero-portrait-720.webp 720w, assets/img/hero-portrait-1080.webp 1080w" sizes="(max-aspect-ratio: 31/50) 62vh, 100vw" width="1080" height="1741">
+      <img src="assets/img/hero-desktop-1672.webp" srcset="assets/img/hero-desktop-960.webp 960w, assets/img/hero-desktop-1672.webp 1672w" sizes="(max-aspect-ratio: 16/9) 178vh, 100vw" width="1672" height="941" alt="" fetchpriority="high">
+    </picture>
     <p class="hero-kicker">The marriage of</p>
-    <h1>Rochelle &amp; Alex</h1>
-    <img class="hero-photo" src="assets/ro-al-01.png" alt="Rochelle and Alex">
-    <div class="hero-caption">
-      <p class="hero-date">12th of April, 2028</p>
-      <p class="hero-venue">Sundowners, Zambales, Philippines</p>
-    </div>
+    <h1><span>Rochelle</span> <span>&amp; Alex</span></h1>
+    <p class="hero-date">12th <span class="hero-of">of</span> April, 2028</p>
+    <figure class="print">
+      <img src="assets/img/ro-al-01.webp" width="991" height="790" alt="Rochelle and Alex sitting together at a garden table, Rochelle holding a white bouquet">
+      <div class="postmark" aria-hidden="true">12 APR<br>2028</div>
+    </figure>
+    <p class="hero-venue">Sundowners, Zambales, Philippines</p>
     <a class="scroll-cue" href="#rsvp" aria-label="Scroll to RSVP">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg>
     </a>

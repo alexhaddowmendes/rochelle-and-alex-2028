@@ -1,20 +1,18 @@
 :root {
-  /* Sampled from the Manila poster. */
-  --dusk-teal: #648483;
-  --sage: #a1af95;
-  --haze: #c7c286;
-  --butter: #edd78f;
-  --glow: #f0dfa1;
-  --sun: #f7f4ea;
-  --foam: #ece6c7;
-  --terracotta: #d08f55;
-  --dry-sand: #c7b98d;
-  --shadow-slate: #645c5e;
-  --palm-deep: #373d36;
-  /* Darkened from the poster, so small text and buttons stay readable. */
-  --deep-sea: #3f5f60;
-  --sea-soft: #46696a;
-  --clay-deep: #985224;
+  /* Sampled from the hero illustration. */
+  --teal: #6b8b83;
+  --sage: #a3ad80;
+  --butter: #f7d68a;
+  --apricot: #eda459;
+  --burnt-orange: #cf7a3c;
+  --mauve: #7d5a66;
+  --jungle: #2e3d2e;
+  --cream: #fdf3d8;
+  /* Darkened from the illustration, so small text and buttons stay readable. */
+  --deep-sea: #2f5f60;
+  --sea-soft: #3d7273;
+  --clay-deep: #8f3f14;
+  --slate: #0a1418;
   --heading-font: 'Josefin Sans', 'Segoe UI', system-ui, sans-serif;
   --body-font: 'Nunito', 'Segoe UI', system-ui, sans-serif;
 }
@@ -27,8 +25,8 @@
 
 body {
   margin: 0;
-  background: var(--foam);
-  color: var(--palm-deep);
+  background: var(--butter);
+  color: var(--jungle);
   font-family: var(--body-font);
   font-size: 1.0625rem;
   line-height: 1.55;
@@ -57,7 +55,6 @@ h2 {
 /* Navigation */
 :root {
   --nav-h: 4.75rem;
-  --frame: 0.6rem;
   --footer-h: 4.5rem;
 }
 
@@ -85,17 +82,6 @@ body.leaving {
   }
 }
 
-/* Postcard border: a paper edge around the whole screen, with a fine inner line. */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 20;
-  border: var(--frame) solid var(--sun);
-  box-shadow: inset 0 0 0 1px rgba(55, 61, 54, 0.25);
-  pointer-events: none;
-}
-
 .site-nav {
   position: fixed;
   top: 0;
@@ -107,7 +93,6 @@ body::after {
   justify-content: center;
   gap: 0.5rem;
   height: var(--nav-h);
-  padding-top: var(--frame);
   opacity: var(--nav-show, 1);
 }
 
@@ -118,7 +103,7 @@ body::after {
   inset: 0;
   z-index: -1;
   background: var(--deep-sea);
-  box-shadow: 0 4px 0 var(--terracotta);
+  box-shadow: 0 4px 0 var(--apricot);
   opacity: var(--nav-fade, 0);
 }
 
@@ -127,7 +112,7 @@ body::after {
   padding: 0.4rem 0;
   border-radius: 999px;
   background: var(--deep-sea);
-  color: var(--sun);
+  color: var(--cream);
   font-family: var(--heading-font);
   font-size: 0.95rem;
   font-weight: 700;
@@ -135,7 +120,7 @@ body::after {
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
-  box-shadow: 0 0 0 2px rgba(247, 244, 234, 0.45);
+  box-shadow: 0 0 0 2px rgba(253, 243, 216, 0.45);
   transition: background 0.2s ease;
 }
 
@@ -147,7 +132,7 @@ body::after {
   background: var(--clay-deep);
 }
 
-/* Hero: a low view across the sea, with the sun setting behind tall mountains. */
+/* Hero: the illustration fills the screen, leaning towards its top edge so the sky always has room for the title. */
 .hero {
   position: relative;
   display: flex;
@@ -155,12 +140,12 @@ body::after {
   align-items: center;
   height: 100vh;
   height: 100svh;
-  min-height: 34rem;
-  padding: calc(var(--frame) + 1.25rem) 1rem 6.5rem;
+  min-height: 28rem;
+  padding: clamp(0.75rem, 2.5svh, 2rem) 1rem 0;
   overflow: hidden;
-  background: linear-gradient(180deg, var(--dusk-teal) 0%, var(--sage) 24%, var(--haze) 38%, var(--butter) 54%, var(--glow) 78%);
+  background: var(--teal);
   text-align: center;
-  color: var(--sun);
+  color: var(--slate);
 }
 
 .hero > * {
@@ -171,118 +156,94 @@ body::after {
   margin: 0;
 }
 
-/* Anchored to the shoreline. Never narrower than 56rem, so phones crop the sides
-   of the scene rather than squashing it. */
-.hero-scene {
+.hero > .hero-art,
+.hero-art img {
   position: absolute;
-  left: 50%;
-  bottom: -2px;
-  width: max(100%, 56rem);
-  aspect-ratio: 1440 / 900;
-  transform: translateX(-50%);
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
-.sun-narrow {
-  display: none;
+.hero-art img {
+  object-fit: cover;
+  object-position: 60% 12%;
 }
 
-.hero-palm {
+/* Melts the shoreline into the section below. */
+.hero::after {
+  content: '';
   position: absolute;
   left: 0;
-  bottom: 1.5rem;
-  height: 74%;
+  right: 0;
+  bottom: 0;
+  height: clamp(2rem, 5svh, 4rem);
+  background: linear-gradient(180deg, rgba(247, 214, 138, 0), rgba(247, 214, 138, 0.6) 60%, var(--butter));
+  pointer-events: none;
+}
+
+/* The three supporting lines. */
+.hero-kicker,
+.hero .hero-date,
+.hero > .hero-venue {
+  font-family: var(--heading-font);
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .hero-kicker {
-  color: var(--sun);
-  font-family: var(--heading-font);
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.4em;
-  text-shadow: 1px 1px 0 var(--palm-deep);
-  text-transform: uppercase;
+  padding-left: 0.42em; /* balances the trailing letter space, so it stays centred */
+  font-size: clamp(0.8rem, 1.6vw, 1.1rem);
+  letter-spacing: 0.42em;
+  line-height: 1.2;
 }
 
 .hero h1 {
-  font-size: clamp(2rem, 8.5vw, 4.25rem);
-  letter-spacing: 0.04em;
-  text-shadow: 3px 3px 0 var(--palm-deep);
-  text-transform: uppercase;
-}
-
-.hero-photo {
-  flex: 1 1 0;
-  min-height: 0;
-  width: min(92vw, 32rem);
-  margin-top: 0.75rem;
-  border: 5px solid var(--sun);
-  border-bottom: 0;
-  border-radius: 999px 999px 0 0;
-  object-fit: cover;
-  object-position: 50% 25%;
-}
-
-/* Paper strip under the photo, so the date reads over any part of the scene. */
-.hero-caption {
-  width: min(92vw, 32rem);
-  padding: 0.6rem 0.75rem 0.7rem;
-  border-radius: 0 0 0.4rem 0.4rem;
-  background: var(--sun);
-  box-shadow: 0 8px 0 rgba(55, 61, 54, 0.3);
-}
-
-.hero-date {
-  color: var(--palm-deep);
+  margin-top: 0.14em;
+  color: #fff;
   font-family: var(--heading-font);
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.hero-venue {
-  color: var(--palm-deep);
-  font-family: var(--heading-font);
-  font-size: 0.95rem;
-  font-weight: 400;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.postmark {
-  position: absolute;
-  bottom: 12.5rem;
-  right: 0.9rem;
-  z-index: 1;
-  background: rgba(247, 244, 234, 0.7);
-  display: grid;
-  place-items: center;
-  width: 4.5rem;
-  height: 4.5rem;
-  border: 2px solid rgba(55, 61, 54, 0.6);
-  border-radius: 50%;
-  color: rgba(55, 61, 54, 0.7);
-  font-family: var(--heading-font);
-  font-size: 0.7rem;
-  font-weight: 700;
+  font-size: clamp(2.25rem, min(6.9vw, 11svh), 10rem);
+  font-weight: 600;
   letter-spacing: 0.08em;
-  line-height: 1.15;
+  line-height: 1;
+  text-shadow: 0.04em 0.04em 0 rgba(10, 20, 24, 0.9);
   text-transform: uppercase;
-  transform: rotate(14deg);
+  white-space: nowrap;
 }
 
-.postmark::before {
-  content: '';
+.hero .hero-date {
+  margin-top: 0.55em;
+  padding-left: 0.3em;
+  font-size: clamp(0.95rem, 2vw, 1.5rem);
+  letter-spacing: 0.3em;
+  line-height: 1.2;
+}
+
+.hero-of {
+  font-size: 0.68em;
+}
+
+.hero > .hero-venue {
   position: absolute;
-  inset: 4px;
-  border: 1px solid rgba(55, 61, 54, 0.45);
-  border-radius: 50%;
+  left: 50%;
+  bottom: clamp(4.75rem, 10svh, 6.5rem);
+  z-index: 1;
+  width: max-content;
+  max-width: calc(100% - 1rem);
+  padding: 0.8em 1.3em 0.7em 1.5em; /* the extra left padding balances the trailing letter space */
+  background: var(--jungle);
+  box-shadow: 0 0 0 2px var(--cream);
+  color: var(--cream);
+  font-size: clamp(0.72rem, 1.4vw, 1.1rem);
+  letter-spacing: 0.2em;
+  text-wrap: balance;
+  transform: translateX(-50%);
 }
 
 .scroll-cue {
   position: absolute;
   left: 50%;
-  bottom: 1.5rem;
+  bottom: 1.25rem;
   z-index: 1;
   display: grid;
   place-items: center;
@@ -290,7 +251,7 @@ body::after {
   height: 3rem;
   margin-left: -1.5rem;
   border-radius: 50%;
-  background: var(--sun);
+  background: var(--cream);
   color: var(--deep-sea);
   animation: bob 1.8s ease-in-out infinite;
 }
@@ -306,33 +267,73 @@ body::after {
   }
 }
 
-@media (max-width: 48rem) {
-  .hero {
-    min-height: 42rem;
-    padding-bottom: 14rem;
+/* Portrait screens get the taller artwork, with extra sky built in, so it anchors to the bay instead. */
+@media (max-aspect-ratio: 4/5) {
+  .hero-art img {
+    object-position: 29% 100%;
+  }
+}
+
+/* Too narrow for one line at a good size, so the names stack and fill the width instead. */
+@media (max-width: 40rem) {
+  .hero h1 {
+    font-size: clamp(2.25rem, 13vw, 5.5rem);
   }
 
-  .hero-palm,
-  .sun-wide {
-    display: none;
+  .hero h1 span {
+    display: block;
   }
+}
 
-  .sun-narrow {
-    display: inline;
-  }
+/* Our photo, as a printed postcard in the middle of the hero. Sized by height too, so it clears the title and banner on short screens. */
+.hero > .print {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  z-index: 1;
+  width: min(78vw, 55svh, 34rem);
+  margin: 0;
+  padding: clamp(0.5rem, 1.5vw, 0.9rem);
+  padding-bottom: clamp(1.75rem, 5vw, 3rem);
+  background: var(--cream);
+  box-shadow: 8px 10px 0 rgba(10, 20, 24, 0.45);
+  transform: translate(-50%, calc(-50% + var(--parallax, 0px))) rotate(-2.5deg);
+  will-change: transform;
+}
 
-  .hero-date {
-    font-size: 1.3rem;
-  }
+.print img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
 
-  .hero-venue {
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
-  }
+.postmark {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 1.25rem;
+  display: grid;
+  place-items: center;
+  width: clamp(3.25rem, 11vw, 4.5rem);
+  height: clamp(3.25rem, 11vw, 4.5rem);
+  border: 2px solid rgba(46, 61, 46, 0.6);
+  border-radius: 50%;
+  background: rgba(253, 243, 216, 0.75);
+  color: var(--jungle);
+  font-family: var(--heading-font);
+  font-size: clamp(0.55rem, 2vw, 0.7rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.15;
+  text-transform: uppercase;
+  transform: rotate(14deg);
+}
 
-  .postmark {
-    bottom: 20rem;
-  }
+.postmark::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(46, 61, 46, 0.45);
+  border-radius: 50%;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -352,6 +353,7 @@ body::after {
   min-height: calc(100vh - var(--footer-h));
   min-height: calc(100svh - var(--footer-h));
   padding-top: calc(var(--nav-h) + 1.5rem);
+  background: linear-gradient(180deg, var(--butter), var(--apricot));
 }
 
 .section-head {
@@ -385,9 +387,9 @@ body::after {
 .card {
   margin-bottom: 1.5rem;
   padding: 1.5rem;
-  background: var(--sun);
+  background: var(--cream);
   border-radius: 0.4rem;
-  box-shadow: 0 6px 0 var(--dry-sand);
+  box-shadow: 0 6px 0 var(--mauve);
 }
 
 /* Airmail stripe along the top edge of each card. */
@@ -397,7 +399,7 @@ body::after {
   height: 0.5rem;
   margin: -1.5rem -1.5rem 1.25rem;
   border-radius: 0.4rem 0.4rem 0 0;
-  background: repeating-linear-gradient(135deg, var(--terracotta) 0 14px, var(--sun) 14px 24px, var(--dusk-teal) 24px 38px, var(--sun) 38px 48px);
+  background: repeating-linear-gradient(135deg, var(--burnt-orange) 0 14px, var(--cream) 14px 24px, var(--teal) 24px 38px, var(--cream) 38px 48px);
 }
 
 .card p:last-child {
@@ -410,7 +412,7 @@ body::after {
 
 .placeholder {
   padding: 0.6rem 0.8rem;
-  border: 2px dashed var(--terracotta);
+  border: 2px dashed var(--burnt-orange);
   border-radius: 0.6rem;
   color: var(--clay-deep);
   font-weight: 600;
@@ -435,10 +437,10 @@ textarea {
   display: block;
   width: 100%;
   padding: 0.65rem 0.8rem;
-  border: 2px solid var(--dusk-teal);
+  border: 2px solid var(--teal);
   border-radius: 0.6rem;
-  background: var(--sun);
-  color: var(--palm-deep);
+  background: var(--cream);
+  color: var(--jungle);
   font: inherit;
   font-size: max(16px, 1rem); /* below 16px, iOS zooms in on focus */
 }
@@ -447,7 +449,7 @@ input:focus-visible,
 textarea:focus-visible,
 button:focus-visible,
 a:focus-visible {
-  outline: 3px solid var(--dusk-teal);
+  outline: 3px solid var(--teal);
   outline-offset: 2px;
 }
 
@@ -459,7 +461,7 @@ button {
   border: 0;
   border-radius: 999px;
   background: var(--deep-sea);
-  color: var(--sun);
+  color: var(--cream);
   font: inherit;
   font-weight: 700;
   cursor: pointer;
@@ -490,7 +492,7 @@ button:disabled {
   min-width: 0;
   margin: 1rem 0 0;
   padding: 1rem;
-  border: 2px solid var(--dry-sand);
+  border: 2px solid var(--sage);
   border-radius: 1rem;
 }
 
@@ -499,7 +501,7 @@ button:disabled {
   font-family: var(--heading-font);
   font-size: 1.2rem;
   font-weight: 700;
-  color: var(--deep-sea);
+  color: var(--mauve);
 }
 
 .choice {
@@ -536,11 +538,11 @@ button:disabled {
 
 .choice input:checked + span {
   background: var(--deep-sea);
-  color: var(--sun);
+  color: var(--cream);
 }
 
 .choice input:focus-visible + span {
-  outline: 3px solid var(--dusk-teal);
+  outline: 3px solid var(--teal);
   outline-offset: 2px;
 }
 
@@ -548,7 +550,7 @@ button:disabled {
   margin: 1rem 0 0;
   padding: 0.7rem 0.9rem;
   border-radius: 0.6rem;
-  background: var(--foam);
+  background: var(--butter);
   color: var(--clay-deep);
   font-weight: 600;
 }
@@ -574,5 +576,6 @@ button:disabled {
   letter-spacing: 0.2em;
   text-align: center;
   text-transform: uppercase;
-  color: var(--deep-sea);
+  background: var(--jungle);
+  color: var(--butter);
 }
