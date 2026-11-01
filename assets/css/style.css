@@ -1,0 +1,321 @@
+:root {
+  --coral: #e76f51;
+  --coral-deep: #b8432a;
+  --amber: #f4a261;
+  --sand: #fbf1e0;
+  --sand-deep: #f0dfc2;
+  --teal: #0b4f57;
+  --teal-soft: #2a7f86;
+  --ink: #17353a;
+  --white: #fffdf9;
+  --heading-font: 'Caveat', 'Comic Sans MS', cursive;
+  --body-font: 'Nunito', 'Segoe UI', system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--sand);
+  color: var(--ink);
+  font-family: var(--body-font);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+}
+
+h1,
+h2 {
+  font-family: var(--heading-font);
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0;
+}
+
+h2 {
+  color: var(--coral-deep);
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* Navigation */
+.site-nav {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  background: var(--teal);
+}
+
+.site-nav a {
+  color: var(--white);
+  font-weight: 700;
+  padding: 0.3rem 1rem;
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current='page'] {
+  background: var(--teal-soft);
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 24rem;
+  padding: 2.5rem 1rem 5rem;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--teal) 0%, #8a4a55 42%, var(--coral) 70%, var(--amber) 100%);
+  text-align: center;
+  color: var(--white);
+}
+
+.hero-small {
+  min-height: 15rem;
+}
+
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7);
+}
+
+.hero-sun {
+  position: absolute;
+  left: 50%;
+  bottom: -6rem;
+  width: 15rem;
+  height: 15rem;
+  margin-left: -7.5rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffe2a8 0%, var(--amber) 70%);
+}
+
+/* The sun would sit over the photo once one is added. */
+.hero-photo ~ .hero-sun {
+  display: none;
+}
+
+.hero-text {
+  position: relative;
+  text-shadow: 0 2px 10px rgba(11, 79, 87, 0.7);
+}
+
+.hero h1 {
+  font-size: clamp(3.5rem, 13vw, 6rem);
+  transform: rotate(-2deg);
+}
+
+.hero p {
+  margin: 0.25rem 0 0;
+  font-size: 1.25rem;
+}
+
+.hero .hero-details {
+  font-weight: 700;
+}
+
+.hero-wave {
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 4rem;
+  fill: var(--sand);
+}
+
+/* Content */
+.page {
+  width: 100%;
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 1rem;
+}
+
+.card {
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  background: var(--white);
+  border-radius: 1.25rem;
+  box-shadow: 0 6px 0 var(--sand-deep);
+}
+
+.card p:last-child {
+  margin-bottom: 0;
+}
+
+.placeholder {
+  padding: 0.6rem 0.8rem;
+  border: 2px dashed var(--coral);
+  border-radius: 0.6rem;
+  color: var(--coral-deep);
+  font-weight: 600;
+}
+
+/* Forms */
+form > label,
+.dietary-label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.25rem;
+  font-weight: 700;
+}
+
+.optional {
+  font-weight: 400;
+}
+
+input[type='text'],
+input[type='email'],
+textarea {
+  display: block;
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  border: 2px solid var(--teal-soft);
+  border-radius: 0.6rem;
+  background: var(--white);
+  color: var(--ink);
+  font: inherit;
+  font-size: max(16px, 1rem); /* below 16px, iOS zooms in on focus */
+}
+
+input:focus-visible,
+textarea:focus-visible,
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--teal-soft);
+  outline-offset: 2px;
+}
+
+button {
+  display: block;
+  width: 100%;
+  margin-top: 1.25rem;
+  padding: 0.8rem 1rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--teal);
+  color: var(--white);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background: var(--teal-soft);
+}
+
+button:disabled {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+.link-button {
+  margin-top: 0.5rem;
+  background: none;
+  color: var(--teal);
+  text-decoration: underline;
+}
+
+.link-button:hover:not(:disabled) {
+  background: none;
+  color: var(--coral-deep);
+}
+
+.member {
+  min-width: 0;
+  margin: 1rem 0 0;
+  padding: 1rem;
+  border: 2px solid var(--sand-deep);
+  border-radius: 1rem;
+}
+
+.member legend {
+  padding: 0 0.4rem;
+  font-family: var(--heading-font);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--teal);
+}
+
+.choice {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.choice label {
+  position: relative;
+  cursor: pointer;
+}
+
+/* The radio stays focusable and in place, so native validation can point at it. */
+.choice input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.choice span {
+  display: block;
+  padding: 0.6rem 0.5rem;
+  border: 2px solid var(--teal);
+  border-radius: 999px;
+  color: var(--teal);
+  font-weight: 700;
+  text-align: center;
+}
+
+.choice input:checked + span {
+  background: var(--teal);
+  color: var(--white);
+}
+
+.choice input:focus-visible + span {
+  outline: 3px solid var(--teal-soft);
+  outline-offset: 2px;
+}
+
+.message {
+  margin: 1rem 0 0;
+  padding: 0.7rem 0.9rem;
+  border-radius: 0.6rem;
+  background: var(--sand);
+  color: var(--coral-deep);
+  font-weight: 600;
+}
+
+.confirmation-title {
+  margin-top: 0;
+  font-family: var(--heading-font);
+  font-size: 1.9rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--teal);
+}
+
+.site-footer {
+  padding: 0.5rem 1rem 2rem;
+  font-family: var(--heading-font);
+  font-size: 1.5rem;
+  text-align: center;
+  color: var(--teal);
+}

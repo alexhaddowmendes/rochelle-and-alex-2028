@@ -1,0 +1,8 @@
+{
+  "name": "rochelle-and-alex-2028",
+  "private": true,
+  "description": "Wedding RSVP site for Rochelle & Alex. No build step; npm is only used to run the tests.",
+  "scripts": {
+    "test": "node --test"
+  }
+}
